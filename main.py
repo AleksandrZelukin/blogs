@@ -1,3 +1,5 @@
+#https://youtu.be/gDaTTjmCCwQ Изучение Flask / #4 - Отображение данных из БД
+#https://youtu.be/7O-QNWwxQSE Изучение Flask / #5 - Удаление и обновление записей
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -19,9 +21,32 @@ class Article(db.Model):
 
 # db.create_all()
 
-@app.route('/home')
+@app.route('/')
 def index():
     return render_template("index.html")
+
+@app.route('/posts')
+def posts():
+    articles = Article.query.order_by(Article.date.desc()).all()
+    #articles = Article.query.first()
+    return render_template("posts.html", articles=articles)
+
+@app.route('/posts/<int:id>')
+def post_detail(id):
+    article = Article.query.get(id)
+    return render_template("post_detail.html", article=article)
+
+
+@app.route('/posts/<int:id>/del')
+def post_delete(id):
+    article = Article.query.get_or_404(id)
+
+    try:
+        db.session.delete(article)
+        db.session.commit()
+        return redirect('/posts')
+    except:
+        return "Kluda!"
 
 @app.route('/about')
 def about():
@@ -32,19 +57,40 @@ def create_article():
     if request.method == "POST":
         title = request.form['title']
         intro = request.form['intro']
-        title = request.form['text']
+        text = request.form['text']
 
         article = Article(title=title, intro=intro, text=text) 
 
         try:
             db.session.add(article)
             db.session.commit()
-            return redirect('/')
+            return redirect('/posts')
 
         except:
             return "Kluda!"
     else:
         return render_template("create-article.html")
+
+
+@app.route('/posts/<int:id>/update', methods=['POST', 'GET'])
+def post_update(id):
+    article = Article.query.get(id)
+    if request.method == "POST":
+        article.title = request.form['title']
+        article.intro = request.form['intro']
+        article.text = request.form['text']
+
+        try:
+            db.session.commit()
+            return redirect('/posts')
+
+        except:
+            return "Kluda!"
+    else:
+        
+        return render_template("post_update.html", article=article)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
