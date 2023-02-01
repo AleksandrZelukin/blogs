@@ -22,6 +22,14 @@ h1 {
     color: brown;
 }
 
+h2 {
+  text-align: center;
+font-family: "Arial", sans-serif;
+font-size: 30px;
+line-height: 30px;
+  color: rgb(73, 42, 165);
+}
+
 p{
     text-align: center;
   font-family: "Arial", sans-serif;
@@ -46,10 +54,20 @@ table, td, th {
     margin: 4px 2px;
     cursor: pointer;
     
-    
 }
-.button1 {padding: 10px 24px;}
-.button2 {padding: 12px 28px;}
-.button3 {padding: 14px 40px;}
-.button4 {padding: 32px 16px;}
-.button5 {padding: 16px;}
+
+
+
+li {
+  float:left; 
+}
+
+input {
+  width: 50%;
+  
+}
+
+textarea {
+  width: 100%;
+  
+}
