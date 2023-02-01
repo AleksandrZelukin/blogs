@@ -27,9 +27,7 @@ def index():
 
 @app.route('/posts', methods=['POST', 'GET'])
 def posts():
-    articles = Article.query.all()
-    # articles = Article.query.order_by(Article.date.desc()).all()
-    #articles = Article.query.first()
+    
     return render_template("posts.html", articles=articles)
 
 @app.route('/posts/<int:id>', methods=['POST', 'GET'])
@@ -93,8 +91,8 @@ def post_update(id):
 
 
 
-# if __name__ == "__main__":
-    # app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
 
-app.run(host='0.0.0.0', port=80)
+# app.run(host='0.0.0.0', port=80)
 
