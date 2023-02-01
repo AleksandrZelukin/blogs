@@ -19,7 +19,7 @@ class Article(db.Model):
     def __repr__(self):
         return '<Article %r>' % self.id
 
-# db.create_all()
+db.create_all()
 
 @app.route('/')
 def index():
@@ -27,7 +27,7 @@ def index():
 
 @app.route('/posts', methods=['POST', 'GET'])
 def posts():
-    
+    articles = Article.query.all()
     return render_template("posts.html", articles=articles)
 
 @app.route('/posts/<int:id>', methods=['POST', 'GET'])
