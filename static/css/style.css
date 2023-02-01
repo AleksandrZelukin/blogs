@@ -4,15 +4,13 @@ body {
   font-size: 14px;
   line-height: 18px;
   color: #000000;
-  background:#216ce5 ;
+  background:#b3f3cd ;
    
 }
 
 div {
 width: 680px;
-height: 630px;
-background-image: url(../images/background.jpg);
-background-repeat: no-repeat;
+height: 30px;
 
 }
 

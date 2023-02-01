@@ -67,7 +67,7 @@ def create_article():
             return redirect('/posts')
 
         except:
-            return "Kluda!"
+            return "Rakstu pievienošanai procesa rodas Kluda!"
     else:
         return render_template("create-article.html")
 
@@ -85,14 +85,15 @@ def post_update(id):
             return redirect('/posts')
 
         except:
-            return "Kluda!"
+            return "Rakstu rediģesanas procesa rodas Kluda!"
     else:
         
         return render_template("post_update.html", article=article)
 
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+    # app.run(debug=True)
 
+app.run(host='0.0.0.0', port=80)
 
