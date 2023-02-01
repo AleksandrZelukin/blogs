@@ -19,7 +19,7 @@ class Article(db.Model):
     def __repr__(self):
         return '<Article %r>' % self.id
 
-db.create_all()
+# db.create_all()
 
 @app.route('/')
 def index():
