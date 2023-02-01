@@ -19,19 +19,18 @@ class Article(db.Model):
     def __repr__(self):
         return '<Article %r>' % self.id
 
-# db.create_all()
+db.create_all()
 
 @app.route('/')
 def index():
     return render_template("index.html")
 
-@app.route('/posts')
+@app.route('/posts', methods=['POST', 'GET'])
 def posts():
-    articles = Article.query.order_by(Article.date.desc()).all()
-    #articles = Article.query.first()
+    articles = Article.query.all()
     return render_template("posts.html", articles=articles)
 
-@app.route('/posts/<int:id>')
+@app.route('/posts/<int:id>', methods=['POST', 'GET'])
 def post_detail(id):
     article = Article.query.get(id)
     return render_template("post_detail.html", article=article)
@@ -67,7 +66,7 @@ def create_article():
             return redirect('/posts')
 
         except:
-            return "Kluda!"
+            return "Rakstu pievienošanai procesa rodas Kluda!"
     else:
         return render_template("create-article.html")
 
@@ -85,7 +84,7 @@ def post_update(id):
             return redirect('/posts')
 
         except:
-            return "Kluda!"
+            return "Rakstu rediģesanas procesa rodas Kluda!"
     else:
         
         return render_template("post_update.html", article=article)
@@ -95,4 +94,5 @@ def post_update(id):
 if __name__ == "__main__":
     app.run(debug=True)
 
+# app.run(host='0.0.0.0', port=80)
 

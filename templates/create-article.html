@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block title %} 
 Galvena lapa
 
@@ -11,12 +10,10 @@ Galvena lapa
 
 <div>
 <form method="post">
-    <input type="text" name="title" id="title"><br>
-    <textarea name="intro" id="intro"></textarea><br>
-    <textarea name="text" id="text"></textarea><br>
-    <input type="submit" value="Sutit"><br>
-    
-     
+    <input type="text" name="title" id="title" placeholder="nosaukums"><br>
+    <textarea name="intro" id="intro"  placeholder="iss aprāksts"></textarea><br>
+    <textarea name="text" id="text"  placeholder="pilns teksts"></textarea><br>
+    <input type="submit" value="Sūtit"><br>    
 </form>
 </div>
 {% endblock %} 
