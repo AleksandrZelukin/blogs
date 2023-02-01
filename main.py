@@ -6,7 +6,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Article(db.Model):
@@ -25,13 +25,14 @@ class Article(db.Model):
 def index():
     return render_template("index.html")
 
-@app.route('/posts')
+@app.route('/posts', methods=['POST', 'GET'])
 def posts():
-    articles = Article.query.order_by(Article.date.desc()).all()
+    articles = Article.query.all()
+    # articles = Article.query.order_by(Article.date.desc()).all()
     #articles = Article.query.first()
     return render_template("posts.html", articles=articles)
 
-@app.route('/posts/<int:id>')
+@app.route('/posts/<int:id>', methods=['POST', 'GET'])
 def post_detail(id):
     article = Article.query.get(id)
     return render_template("post_detail.html", article=article)
