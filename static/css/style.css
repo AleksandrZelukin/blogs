@@ -1,8 +1,7 @@
 body {
   padding: 0;
   font-family: "Arial", sans-serif;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 12px;
   color: #000000;
   background:#b3f3cd ;
    
@@ -15,10 +14,10 @@ height: 30px;
 }
 
 h1 {
-    text-align: center;
+  text-align: center;
   font-family: "Arial", sans-serif;
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 32px;
+  line-height: 32px;
     color: brown;
 }
 
@@ -27,14 +26,15 @@ h2 {
 font-family: "Arial", sans-serif;
 font-size: 30px;
 line-height: 30px;
-  color: rgb(73, 42, 165);
+color: rgb(73, 42, 165);
 }
 
+
 p{
-    text-align: center;
+  text-align: center;
   font-family: "Arial", sans-serif;
   font-size: 14px;
-  line-height: 36px;
+  
 }
 
 table, td, th { 

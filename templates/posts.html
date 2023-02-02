@@ -7,16 +7,15 @@ Visi posti
 {% endblock %}
 
 {% block body %}
-<h1>Viss</h1>
+<h1>Visi ierāksti</h1>
 
 {% if articles|length > 0 %}
 {% for el in articles  %}
 <div>
-    <h2> {{el.title}}  </h2>
-    <p>{{ el.intro }}</p>
-    <p><b>Date: {{ el.date.date() }}</b></p>
 
-    <a href="/posts/{{ el.id }}">Detalizets</a>
+    <p><i>Nosaukums:</i> {{el.title}}  <i>Apraksts</i> {{ el.intro }}
+    <br><b>Date: {{ el.date.date() }}</b>
+    <br><a href="/posts/{{ el.id }}">Detalizēts</a></p>
 </div>
 
 {%endfor%}
