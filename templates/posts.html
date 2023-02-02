@@ -12,15 +12,14 @@ Visi posti
 {% if articles|length > 0 %}
 {% for el in articles  %}
 <div>
-
-    <p><i>Nosaukums:</i> {{el.title}}  <i>Apraksts</i> {{ el.intro }}
+    <p><i>Nosaukums:</i> {{el.title}}  <i>Apraksts: </i> {{ el.intro }}
     <br><b>Date: {{ el.date.date() }}</b>
     <br><a href="/posts/{{ el.id }}">Detalizēts</a></p>
 </div>
 
 {%endfor%}
 {% else  %}
-<p> Ierakstus vel nav</p>
+<h2> Ierakstus vel nav</h2>
 {% endif %}
 
 {% endblock %} 
