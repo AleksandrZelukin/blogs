@@ -1,5 +1,5 @@
-#https://youtu.be/gDaTTjmCCwQ Изучение Flask / #4 - Отображение данных из БД
-#https://youtu.be/7O-QNWwxQSE Изучение Flask / #5 - Удаление и обновление записей
+# https://youtu.be/gDaTTjmCCwQ Изучение Flask / #4 - Отображение данных из БД
+# https://youtu.be/7O-QNWwxQSE Изучение Flask / #5 - Удаление и обновление записей
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -8,6 +8,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,16 +20,19 @@ class Article(db.Model):
     def __repr__(self):
         return '<Article %r>' % self.id
 
+
 # db.create_all()
 
 @app.route('/')
 def index():
     return render_template("index.html")
 
+
 @app.route('/posts', methods=['POST', 'GET'])
 def posts():
     articles = Article.query.order_by(Article.date.desc()).all()
     return render_template("posts.html", articles=articles)
+
 
 @app.route('/posts/<int:id>', methods=['POST', 'GET'])
 def post_detail(id):
@@ -47,9 +51,11 @@ def post_delete(id):
     except:
         return "Kluda!"
 
+
 @app.route('/about')
 def about():
     return render_template("about.html")
+
 
 @app.route('/create-article', methods=['POST', 'GET'])
 def create_article():
@@ -58,7 +64,7 @@ def create_article():
         intro = request.form['intro']
         text = request.form['text']
 
-        article = Article(title=title, intro=intro, text=text) 
+        article = Article(title=title, intro=intro, text=text)
 
         try:
             db.session.add(article)
@@ -86,13 +92,11 @@ def post_update(id):
         except:
             return "Rakstu rediģesanas procesa rodas Kluda!"
     else:
-        
-        return render_template("post_update.html", article=article)
 
+        return render_template("post_update.html", article=article)
 
 
 # if __name__ == "__main__":
 #     app.run(debug=True)
 
 app.run(host='0.0.0.0', port=80)
-
